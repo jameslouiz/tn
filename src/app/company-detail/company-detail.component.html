@@ -1,0 +1,158 @@
+<!-- Overlay -->
+<div
+    class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+    *ngIf="isOpen"
+    (click)="onClose()"
+></div>
+
+<!-- Drawer -->
+<div
+    *ngIf="company"
+    class="fixed inset-y-0 right-0 w-[600px] bg-white shadow-lg transform transition-transform"
+    [ngClass]="{ 'translate-x-0': isOpen, 'translate-x-full': !isOpen }"
+>
+    <div class="pointer-events-auto w-full h-full">
+        <div
+            class="flex h-full flex-col overflow-y-scroll bg-white pb-6 shadow-xl"
+        >
+            <div class="">
+                <div class="flex items-start justify-between p-4 bg-gray-50">
+                    <h2
+                        class="text-base font-semibold leading-6 text-gray-900"
+                        id="slide-over-title"
+                    >
+                        {{ company.title }}
+                    </h2>
+                    <div class="flex h-7 items-center">
+                        <button
+                            (click)="onClose()"
+                            type="button"
+                            class="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            <svg
+                                class="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="relative mt-6 flex-1">
+                <dl class="space-y-8 px-4 sm:space-y-6 sm:px-6">
+                    <div>
+                        <dt
+                            class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0"
+                        >
+                            Company number
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {{ company.company_number }}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0"
+                        >
+                            Registered address
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {{ company.address_snippet }}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0"
+                        >
+                            Company status
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {{ company.company_status }}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0"
+                        >
+                            Company type
+                        </dt>
+                        <dd
+                            class="mt-1 text-sm text-gray-900 sm:col-span-2 uppercase"
+                        >
+                            {{ company.company_type }}
+                        </dd>
+                    </div>
+                    <div>
+                        <dt
+                            class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0"
+                        >
+                            Incorporated on
+                        </dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {{ company.date_of_creation }}
+                        </dd>
+                    </div>
+                </dl>
+
+                <div class="p-6">
+                    <table class="w-full divide-y divide-gray-300">
+                        <thead>
+                            <tr>
+                                <th
+                                    scope="col"
+                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                                >
+                                    Name
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                >
+                                    Role
+                                </th>
+
+                                <th
+                                    scope="col"
+                                    class="px-3 py-3.5 text-right text-sm font-semibold text-gray-900"
+                                >
+                                    Appointed on
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr *ngFor="let officer of companyOfficers">
+                                <td
+                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
+                                >
+                                    {{ officer.name }}
+                                </td>
+
+                                <td
+                                    class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+                                >
+                                    {{ officer.officer_role }}
+                                </td>
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
+                                >
+                                    {{ officer.appointed_on }}
+                                </td>
+                            </tr>
+
+                            <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

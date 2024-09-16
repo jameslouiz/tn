@@ -1,0 +1,62 @@
+<main class="w-full mx-auto max-w-5xl">
+    <div
+        *ngIf="!searchTerm && !results.length"
+        class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
+    >
+        <h1
+            class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+        >
+            Need a query to search...
+        </h1>
+    </div>
+
+    <div
+        *ngIf="searchTerm && !results.length"
+        class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
+    >
+        <h1
+            class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+        >
+            Sorry no results...
+        </h1>
+    </div>
+
+    <div
+        *ngIf="results.length"
+        class="mt-8 rounded-md ring-2 ring-gray-100 overflow-hidden"
+    >
+        <ul role="list" class="divide-y divide-gray-100">
+            <li
+                *ngFor="let company of results"
+                class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50"
+            >
+                <a
+                    class="flex justify-between w-full hover:cursor-pointer"
+                    (click)="selectCompany(company)"
+                >
+                    <div class="flex min-w-0 gap-x-4">
+                        <div class="min-w-0 flex-auto">
+                            <p
+                                class="text-sm font-semibold leading-4 text-gray-900"
+                            >
+                                {{ company.title }}
+                            </p>
+                            <div class="mt-1">
+                                <p
+                                    class="text-sm leading-6 text-gray-600 font-semibold mr-4"
+                                >
+                                    {{ company.description }}
+                                </p>
+                                <p
+                                    class="mt-1 flex text-xs leading-5 text-gray-500"
+                                >
+                                    {{ company.address_snippet }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</main>
