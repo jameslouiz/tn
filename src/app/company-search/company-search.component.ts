@@ -20,6 +20,7 @@ import { Company } from '../types'
 })
 export class CompanySearchComponent {
     searchTerm: string = ''
+    searchedTerm: string = ''
     results: Company[] = []
     isDrawerOpen: boolean = false
     selectedCompany: any = null
@@ -27,6 +28,7 @@ export class CompanySearchComponent {
     constructor(private companyService: CompanyService) {}
 
     onSearch(): void {
+        this.searchedTerm = this.searchTerm
         this.companyService.searchCompanies(this.searchTerm).subscribe(
             (data) => {
                 this.results = data.items || []

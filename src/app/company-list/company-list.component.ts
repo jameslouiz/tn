@@ -13,6 +13,7 @@ export class CompanyListComponent {
     @Output() companySelected = new EventEmitter<any>()
     @Input() results: Company[] = []
     @Input() searchTerm: string = ''
+    @Input() searchedTerm: string = ''
 
     constructor() {}
 

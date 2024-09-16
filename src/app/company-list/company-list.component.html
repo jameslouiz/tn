@@ -1,6 +1,6 @@
 <main class="w-full mx-auto max-w-5xl">
     <div
-        *ngIf="!searchTerm && !results.length"
+        *ngIf="!searchedTerm && !results.length"
         class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
     >
         <h1
@@ -11,7 +11,7 @@
     </div>
 
     <div
-        *ngIf="searchTerm && !results.length"
+        *ngIf="searchedTerm && !results.length"
         class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
     >
         <h1

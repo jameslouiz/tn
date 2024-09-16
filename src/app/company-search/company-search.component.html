@@ -34,7 +34,12 @@
         </div>
     </div>
 </header>
-<app-company-list [results]="results" (companySelected)="openDrawer($event)" />
+<app-company-list
+    [results]="results"
+    [searchTerm]="searchTerm"
+    [searchedTerm]="searchedTerm"
+    (companySelected)="openDrawer($event)"
+/>
 
 <app-company-detail
     [isOpen]="isDrawerOpen"
