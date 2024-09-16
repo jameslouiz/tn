@@ -14,6 +14,7 @@ export class CompanyListComponent {
     @Input() results: Company[] = []
     @Input() searchTerm: string = ''
     @Input() searchedTerm: string = ''
+    @Input() loading: boolean = false
 
     constructor() {}
 

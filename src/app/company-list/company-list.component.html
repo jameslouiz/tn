@@ -1,6 +1,17 @@
 <main class="w-full mx-auto max-w-5xl">
     <div
-        *ngIf="!searchedTerm && !results.length"
+        *ngIf="loading && !results.length"
+        class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
+    >
+        <h1
+            class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+        >
+            Loading...
+        </h1>
+    </div>
+
+    <div
+        *ngIf="!searchedTerm && !results.length && !loading"
         class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
     >
         <h1
@@ -11,7 +22,7 @@
     </div>
 
     <div
-        *ngIf="searchedTerm && !results.length"
+        *ngIf="searchedTerm && !results.length && !loading"
         class="mx-auto flex w-full max-w-7xl flex-auto flex-col justify-center px-6 py-24"
     >
         <h1
@@ -24,6 +35,7 @@
     <div
         *ngIf="results.length"
         class="mt-8 rounded-md ring-2 ring-gray-100 overflow-hidden"
+        [ngClass]="{ 'opacity-50': loading }"
     >
         <ul role="list" class="divide-y divide-gray-100">
             <li

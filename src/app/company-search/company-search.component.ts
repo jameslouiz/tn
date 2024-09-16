@@ -21,6 +21,7 @@ import { Company } from '../types'
 export class CompanySearchComponent {
     searchTerm: string = ''
     searchedTerm: string = ''
+    loading: boolean = false
     results: Company[] = []
     isDrawerOpen: boolean = false
     selectedCompany: any = null
@@ -29,12 +30,15 @@ export class CompanySearchComponent {
 
     onSearch(): void {
         this.searchedTerm = this.searchTerm
+        this.loading = true
         this.companyService.searchCompanies(this.searchTerm).subscribe(
             (data) => {
                 this.results = data.items || []
+                this.loading = false
             },
             (error) => {
                 console.error('Error fetching companies', error)
+                this.loading = false
             }
         )
     }
